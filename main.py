@@ -111,7 +111,6 @@ def extract_page_data_from_soup(soup: BeautifulSoup) -> dict:
 def choose_internal_links(base_url: str, soup: BeautifulSoup, domain: str) -> list[str]:
     candidates = []
     seen = set()
-    #candidate paths daca nu exista in homepage
     manual_candidates = [
         "/about",
         "/contact",
@@ -124,7 +123,6 @@ def choose_internal_links(base_url: str, soup: BeautifulSoup, domain: str) -> li
         if domain in parsed.netloc and full_url not in seen:
             seen.add(full_url)
             candidates.append(full_url)
-    # linkuri reale gasite in homepage
     for a in soup.find_all("a", href=True):
         href = a.get("href", "").strip()
         if not href:
